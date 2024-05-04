@@ -1,8 +1,7 @@
 <launch>
   <!-- Static Transform Publisher -->
   <node pkg="tf" type="static_transform_publisher" name="base_to_laser_broadcaster"
-        args="1 0 0 0 0 0 base_link base_footprint 100" />
-
+        args="1 0 0 0 0 0 base_link base_footprint" />
   <!-- Gmapping -->
   <node pkg="gmapping" type="slam_gmapping" name="slam_gmapping" output="screen">
     <param name="base_frame" value="base_link"/>
