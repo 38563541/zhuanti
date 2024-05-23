@@ -1,7 +1,9 @@
 <launch>
 <node pkg="tf2_ros" type="static_transform_publisher" name="base_to_laser_broadcaster"
                 args="0 0 0 0 0 0 base_link base_footprint" />
-  <!-- Run the map server -->
+
+<node pkg="tf" type="static_transform_publisher" name="base_link_to_laser4"
+    args="0.0 0.0 0.2 0.0 0.0 0.0 /base_footprint /laser 40" />  <!-- Run the map server -->
   <node name="slam_gmapping" pkg="gmapping" type="slam_gmapping">
     <param name="base_frame" value="base_link"/>
     <param name="odom_frame" value="odom"/>
