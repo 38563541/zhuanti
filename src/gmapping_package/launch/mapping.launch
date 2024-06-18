@@ -3,11 +3,11 @@
 <node name="downsample_node" pkg="gmapping_package" type="downsample_lidar.py" output="screen" />
 -->
 <node pkg="tf" type="static_transform_publisher" name="dstoframe"
-    args="0.0 0.0 0.2 0.0 0.0 0.0 /scan /laser_frame 40" />
+    args="0.0 0.0 0.2 0.0 0.0 0.0 /scan /laser_frame " />
 <node pkg="tf2_ros" type="static_transform_publisher" name="base_to_laser_broadcaster"
                 args="0 0 0 0 0 0 base_link base_footprint" />
 <node pkg="tf" type="static_transform_publisher" name="base_link_to_laser4"
-    args="0.0 0.0 0.2 0.0 0.0 0.0 /base_footprint /laser_frame 40" />
+    args="0.0 0.0 0.2 0.0 0.0 0.0 /base_footprint /laser_frame " />
 
 
   <!-- Run the map server -->
