@@ -1,8 +1,5 @@
 <launch>
-    <!-- Map server -->
-    <arg name="map_file" default="$(find navigation)/maps/06191.yaml"/>
-    <node name="map_server" pkg="map_server" type="map_server" args="$(arg map_file)" />
-
+    
     <!-- AMCL -->
     <include file="$(find navigation)/launch/amcl.launch"/>
 
@@ -23,7 +20,7 @@
     <!-- Robot State Publisher -->
     <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher">
         <param name="publish_frequency" value="50.0" />
-        <rosparam file="$(find navigation)/urdf/your_robot_model.urdf" param="robot_description"/>
+       <param name="robot_description" textfile="$(find navigation)/urdf/agilex_tracer.urdf"/>
     </node>
 
     <!-- TF tree -->

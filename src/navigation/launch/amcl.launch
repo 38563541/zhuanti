@@ -1,6 +1,6 @@
 <launch>
     <!-- Load the map -->
-    <arg name="map_file" default="$(find navigation)/maps/06191.yaml"/>
+    <arg name="map_file" default="$(find navigation)/maps/0602full.yaml"/>
     <node name="map_server" pkg="map_server" type="map_server" args="$(arg map_file)"/>
     <node pkg="tf" type="static_transform_publisher" name="base_link_to_laser4"
     args="0.0 0.0 0.2 0.0 0.0 0.0 /base_footprint /laser 40" /> 

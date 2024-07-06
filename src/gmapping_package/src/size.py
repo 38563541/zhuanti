@@ -7,7 +7,7 @@ def callback(data):
 
 def listener():
     rospy.init_node('scan_size_listener', anonymous=True)
-    rospy.Subscriber("downsampled_scan", LaserScan, callback)
+    rospy.Subscriber("scan", LaserScan, callback)
     rospy.spin()
 
 if __name__ == '__main__':
