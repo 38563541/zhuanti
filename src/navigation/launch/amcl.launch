@@ -1,6 +1,6 @@
 <launch>
     <!-- Load the map -->
-    <arg name="map_file" default="$(find navigation)/maps/0519.yaml"/>
+    <arg name="map_file" default="$(find navigation)/maps/06191.yaml"/>
     <node name="map_server" pkg="map_server" type="map_server" args="$(arg map_file)"/>
     <node pkg="tf" type="static_transform_publisher" name="base_link_to_laser4"
     args="0.0 0.0 0.2 0.0 0.0 0.0 /base_footprint /laser 40" /> 
@@ -14,32 +14,30 @@
   <!-- Publish scans from best pose at a max of 10 Hz -->
   <param name="odom_model_type" value="diff"/>
   <param name="odom_alpha5" value="0.1"/>
-  <param name="gui_publish_rate" value="10.0"/>
-  <param name="laser_max_beams" value="30"/>
-  <param name="min_particles" value="500"/>
-  <param name="max_particles" value="5000"/>
-  <param name="kld_err" value="0.05"/>
-  <param name="kld_z" value="0.99"/>
-  <param name="odom_alpha1" value="0.2"/>
-  <param name="odom_alpha2" value="0.2"/>
-  <!-- translation std dev, m -->
-  <param name="odom_alpha3" value="0.8"/>
-  <param name="odom_alpha4" value="0.2"/>
-  <param name="laser_z_hit" value="0.5"/>
-  <param name="laser_z_short" value="0.05"/>
-  <param name="laser_z_max" value="0.05"/>
-  <param name="laser_z_rand" value="0.5"/>
-  <param name="laser_sigma_hit" value="0.2"/>
-  <param name="laser_lambda_short" value="0.1"/>
-  <param name="laser_model_type" value="likelihood_field"/>
-  <!-- <param name="laser_model_type" value="beam"/> -->
-  <param name="laser_likelihood_max_dist" value="2.0"/>
-  <param name="update_min_d" value="0.2"/>
-  <param name="update_min_a" value="0.5"/>
-  <param name="odom_frame_id" value="odom"/>
-  <param name="resample_interval" value="1"/>
-  <param name="transform_tolerance" value="0.1"/>
-  <param name="recovery_alpha_slow" value="0.0"/>
-  <param name="recovery_alpha_fast" value="0.0"/>
+  <param name="gui_publish_rate" value="10.0"/> <!-- GUI發布率，單位為Hz，控制視覺化信息的發布頻率 -->
+<param name="laser_max_beams" value="30"/> <!-- 從雷射掃描中使用的最大光束數量 -->
+<param name="min_particles" value="500"/> <!-- 過濾器中的最小粒子數量 -->
+<param name="max_particles" value="5000"/> <!-- 過濾器中的最大粒子數量 -->
+<param name="kld_err" value="0.05"/> <!-- KLD算法中允許的最大誤差，用於動態調整粒子數量 -->
+<param name="kld_z" value="0.99"/> <!-- KLD算法中的安全因子，用於防止粒子耗盡 -->
+<param name="odom_alpha1" value="0.2"/> <!-- 里程計模型的噪聲參數，轉向時的轉向噪聲 -->
+<param name="odom_alpha2" value="0.2"/> <!-- 里程計模型的噪聲參數，轉向時的平移噪聲 -->
+<param name="odom_alpha3" value="0.8"/> <!-- 里程計模型的噪聲參數，平移時的平移噪聲 -->
+<param name="odom_alpha4" value="0.2"/> <!-- 里程計模型的噪聲參數，平移時的轉向噪聲 -->
+<param name="laser_z_hit" value="0.5"/> <!-- 雷射模型中"命中"部分的混合權重 -->
+<param name="laser_z_short" value="0.05"/> <!-- 雷射模型中"短距離"部分的混合權重 -->
+<param name="laser_z_max" value="0.05"/> <!-- 雷射模型中"最大距離"部分的混合權重 -->
+<param name="laser_z_rand" value="0.5"/> <!-- 雷射模型中"隨機"部分的混合權重 -->
+<param name="laser_sigma_hit" value="0.2"/> <!-- 雷射模型中"命中"部分的標準差 -->
+<param name="laser_lambda_short" value="0.1"/> <!-- 雷射模型中"短距離"部分的指數分佈率 -->
+<param name="laser_model_type" value="likelihood_field"/> <!-- 使用的雷射模型類型，此處為"likelihood_field" -->
+<param name="laser_likelihood_max_dist" value="2.0"/> <!-- 用於likelihood_field模型的最大障礙物膨脹距離 -->
+<param name="update_min_d" value="0.2"/> <!-- 執行濾波器更新前的最小平移移動距離 -->
+<param name="update_min_a" value="0.5"/> <!-- 執行濾波器更新前的最小轉向移動角度 -->
+<param name="odom_frame_id" value="odom"/> <!-- 里程計框架的ID -->
+<param name="resample_interval" value="1"/> <!-- 每進行多少次濾波器更新後進行一次重採樣 -->
+<param name="transform_tolerance" value="0.1"/> <!-- 在放棄變換請求前，當前時間與最新變換可用時間之間的容忍時間（秒） -->
+<param name="recovery_alpha_slow" value="0.0"/> <!-- 控制AMCL調整其對慢速重新匯合恢復參數標準差估計的速度的因子 -->
+<param name="recovery_alpha_fast" value="0.0"/> <!-- 控制AMCL調整其對快速重新匯合恢復參數標準差估計的速度的因子 -->
 </node>
 </launch>
